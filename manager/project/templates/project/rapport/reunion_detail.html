@@ -1,0 +1,39 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+     <div class="w-full flex justify-between items-center p-3">
+        <h2 class="text-xl font-semibold">Reunion</h2>
+        <a href="{% url 'project:create_report' project.id todolist.id task.id reunion.id %}" >
+            <button id="penModalBtn" class="flex items-center bg-green-600  hover:bg-green-400  text-white hover:text-gray-800   border border-fuchsia-00 hover:border-green-100  font-semibold py-2 px-4 rounded-md transition-colors duration-300">
+                <svg class="w-4 h-4 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                <p class="text-white">New Report</p>
+            </button>
+        </a>
+    </div>
+
+     <h1 class=" text-start mb-6 text-3xl bd-1">Nom : {{ reunion.object }}</h1>
+    <div class="text-start">
+        <a href="{% url 'project:edit_reunion' project.id todolist.id task.id reunion.id %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Editer</a>
+        <a href="{% url 'project:delete_reunion' project.id todolist.id task.id reunion.id %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Supprimer</a>
+    </div>
+
+    <div class="border-gray-500 border-2 p-4 mb-4 mt-4 rounded-lg">
+        <p class="border text-start  mb-4 text-xl border-gray-500 border-1 p-4 ">Date : {{ reunion.date }}</p>
+    </div>
+
+    <h1 class="mb-4 text-start bd-1 text-3xl">Rapports  </h1>
+    <div class="mt-6 w-full grid grid-cols-4 gap-4">
+       {% for report in reports %}
+            <div class="py-6 px-6 bg-slate-200  rounded-lg">
+                <a href="{% url 'project:report_detail' project.id todolist.id task.id reunion.id report.id %}">
+                    <h2 class="mb-4 text-xl">{{ report.name }}</h2>
+
+                </a>
+            </div>
+       {% endfor %}
+    </div>
+
+
+{% endblock %}

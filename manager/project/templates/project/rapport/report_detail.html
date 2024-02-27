@@ -1,0 +1,16 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+     <div class="text-start">
+        <h1 class="mb-6 text-3xl">Nom : {{ report.name }}</h1>
+
+        <p class="mb-6">Contenu : {{ report.content }}</p>
+        <small class="mb-6">Date : {{ report.date }} <br></small>
+
+
+        <a href="{% url 'project:edit_report' project.id todolist.id task.id reunion.id report.id  %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Editer</a>
+        <a href="{% url 'project:delete_report' project.id todolist.id task.id reunion.id report.id  %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Supprimer</a>
+
+    </div>
+
+{% endblock %}

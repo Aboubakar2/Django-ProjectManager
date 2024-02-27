@@ -1,0 +1,16 @@
+{% extends 'project/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'project/style.css' %}">
+
+{% block content %}
+    <div class=" inline-block py-6 px-6 bg-slate-200 rounded-lg">
+
+        <h2 class="mb-6 text-xl"> Hi {{ request.user }}</h2>
+
+        <p class="text-xl text-slate-600">
+            Welcome to Promanager
+        </p>
+
+    </div>
+<!--<img src="{% static 'project/images/pic.png' %}" alt="My image" style="background-position: center">-->
+{% endblock %}

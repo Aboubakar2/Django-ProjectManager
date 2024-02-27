@@ -1,0 +1,34 @@
+{% extends 'project/base.html' %}
+
+<!--{% load static %}-->
+
+<link rel="stylesheet" type="text/css" href="{% static 'project/style.css' %}">
+{% block content %}
+    <h1 class=" text-start mb-6 text-3xl bd-1">{{ todolist.name }}</h1>
+    <div class="flex items-center justify-between px-4">
+    <a href="{% url 'project:edit_todolist' project.id todolist.id %}" class="py-4 px-8 bg-sky-600 hover:bg-sky-400 text-white hover:text-gray-800 inline-block">Edit</a>
+    <a href="{% url 'project:delete_todolist' project.id todolist.id %}" class="py-4  px-8 bg-amber-600 hover:bg-amber-400 text-white hover:text-gray-800 inline-block">Delete</a>
+    </div>
+    <div class="border-gray-500 border-2 p-4 mb-4 mt-4 rounded-lg">
+        <p class="border text-start  mb-4 text-xl border-gray-500 border-1 p-4 ">{{ todolist.description }}</p>
+    </div>
+
+
+    <a href="{% url 'project:add_task' project.id todolist.id %}" class=" py-4 px-8 bg-green-600  hover:bg-green-400  text-white hover:text-gray-800 inline-block">Add task</a>
+    <div class="border-gray-500 border-2 p-4 mb-4 mt-4 rounded-lg">
+        <h1 class="text-start mb-6 text-3xl  bd-1">Tasks</h1>
+        <div class="mt-8 grid grid-cols-6 gap-4">
+           {% for task in todolist.tasks.all %}
+                <div class=" py-6 px-6 bg-sky-300 text-center rounded-md">
+                    <a href="{% url 'project:task_detail' project.id todolist.id task.id  %}">
+                        <h2 class="mb-4 text-xl">{{ task.name|truncatewords:2 }}</h2>
+
+                         <p class="text-sm text-slate-600">
+                            {{ task.description|truncatewords:4 }}
+                        </p>
+                    </a>
+                </div>
+           {% endfor %}
+        </div>
+    </div>
+{% endblock %}

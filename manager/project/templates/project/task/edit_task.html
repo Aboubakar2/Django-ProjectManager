@@ -1,0 +1,29 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1 class="mb-6 px-8 text-3xl">Edit task</h1>
+     <form class="mt-6 px-8 space-y-4 text-start" method="post" action=".">
+        {% csrf_token %}
+        <div>
+            <label>Nom</label><br>
+            <input name="name" type="text" value="{{ task.name }}"  class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+
+         <div>
+            <label>Description</label><br>
+            <textarea name="description"  class="w-full py-4 px-6 bg-slate-500 text-white">{{ task.description }}</textarea>
+        </div>
+        <div>
+            <label>Date début</label><br>
+            <input name="startdate" type="date" value="{{ task.start_date|date:'Y-m-d'  }}" class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+
+        <div>
+            <label>Deadline</label><br>
+            <input name="deadline" type="date" value="{{ task.deadline|date:'Y-m-d'  }}" class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+        <div>
+            <button class=" py-4  px-8 bg-green-600  hover:bg-green-400  text-white hover:text-gray-800">Create</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1 class="mb-6 px-8 text-3xl">Editer un matériel</h1>
+    <form class="mt-6 px-8 space-y-4 text-start" method="post" action="{% url 'project:edit_material' material.id %}">
+        {% csrf_token %}
+        <div>
+            <label for="id_name">Nom :</label><br>
+            <input id="id_name" name="name" value="{{ material.name }}" type="text" class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+
+        <div>
+            <label for="id_usage_mode">Mode d'utilisation :</label><br>
+            <select value="{{ material.usage_mode }}" id="id_usage_mode" name="usage_mode" class="w-full py-4 px-6 bg-slate-500 text-white">
+                <option value="Partagée">Partagée</option>
+                <option value="Exclusif">Exclusif</option>
+            </select>
+        </div>
+
+        <div>
+            <button type="submit" class="py-4 mt-8 px-8 bg-green-600 hover:bg-green-400 text-white hover:text-gray-800">Enregistrer les modifications</button>
+        </div>
+    </form>
+{% endblock %}

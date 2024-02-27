@@ -1,0 +1,30 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1 class="mb-6 px-8 text-3xl">Edit project</h1>
+     <form class="mt-6 px-8 space-y-4 text-start" method="post" action=".">
+        {% csrf_token %}
+        <div>
+            <label>Nom</label><br>
+            <input name="name" value="{{project.name }}" type="text" class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+
+         <div>
+            <label>Description</label><br>
+            <textarea name="description"  class="w-full py-4 px-6 bg-slate-500 text-white">{{ project.description }}</textarea>
+        </div>
+        <div>
+            <label>Date début</label><br>
+            <input name="startdate" type="date" value="{{ project.start_date|date:'Y-m-d' }}"  class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+
+        <div>
+            <label>Deadline</label><br>
+           <input name="deadline" type="date" value="{{ project.deadline|date:'Y-m-d' }}"  class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+        <div class="flex justify-between">
+            <button class=" py-4  px-8 bg-green-600  hover:bg-green-400  text-white hover:text-gray-800">Submit</button>
+            <a href="{% url 'project:project' project.id %}"><button  class=" py-4  px-8 bg-amber-600  hover:bg-amber-400  text-white hover:text-gray-800">Cancel</button></a>
+        </div>
+    </form>
+{% endblock %}

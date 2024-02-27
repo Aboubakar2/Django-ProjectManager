@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Project Manager</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'project/style.css' %}">
+</head>
+
+
+<body class="font-[Jetbrains Mono] font-bold overflow-x-hidden">
+    <!-- la barre laterale  -->
+
+    <div
+        class="sidebar fixed top-0 bottom-0 w-48 p-2 overflow-x-hidden text-center bg-gray-900  h-screen mr-200 ">
+        <!-- logo texte -->
+        <div class="text-gray-100 text-xl">
+            <a href="{% url 'project:index' %}">
+                 <div class="p-2.5 mt-1 flex items-center">
+                    <i class="bi bi-kanban px-2 py-1 bg-green-600 rounded-md"></i>
+                    <h1 class="font-bold text-gray-200 text-[15px] ml-3 ">ProManager</h1>
+    <!--                <i class="bi bi-x ml-20 cursor-pointer lg:hidden"></i>-->
+                </div>
+            </a>
+            <hr class="my-2 text-gray-600">
+        </div>
+
+        <!-- Elements du menu -->
+
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'project:projects' %}">
+        <div
+            class="p-2.5 mt-5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-calendar3-range"></i>
+            <span class="text-[15px] ml-6 text-gray-200 ">Projects</span>
+        </div>
+        </a>
+
+        <a href="{% url 'project:agents' %}">
+        <div
+            class="p-2.5 mt-5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-people"></i>
+            <span class="text-[15px] ml-6 text-gray-200 ">Agents</span>
+        </div>
+        </a>
+
+        <a href="{% url 'project:teams' %}">
+        <div
+            class="p-2.5 mt-5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-list-task"></i>
+            <span class="text-[15px] ml-6 text-gray-200 ">Teams</span>
+        </div>
+        </a>
+
+        <a href="{% url 'project:materials' %}">
+        <div
+            class="p-2.5 mt-5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-list-task"></i>
+            <span class="text-[15px] ml-6 text-gray-200 ">Materials</span>
+
+        </div>
+        </a>
+
+         <a href="{% url 'project:softwares' %}">
+        <div
+            class="p-2.5 mt-5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-list-task"></i>
+            <span class="text-[15px] ml-6 text-gray-200 "> Softwares</span>
+
+        </div>
+        </a>
+
+
+
+        <hr class="my-2 text-gray-600">
+        <a href="{% url 'account:logout' %}">
+        <div
+            class="p-2.5 bottom-0  flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span class="text-[15px] ml-6 text-gray-200 ">Log out</span>
+        </div>
+        </a>
+        {% else %}
+        <a href="{% url 'account:signup' %}">
+        <div
+            class="p-2.5 mt-5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-people"></i>
+            <span class="text-[15px] ml-6 text-gray-200 ">Sign Up</span>
+        </div>
+        </a>
+        <a href="{% url 'account:login' %}">
+        <div
+            class="p-2.5 mt-5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600 text-white">
+            <i class="bi bi-people"></i>
+            <span class="text-[15px] ml-6 text-gray-200 ">Log in</span>
+        </div>
+        </a>
+        {% endif %}
+    </div>
+    <!-- elements de la page principale -->
+    <main id="content" class=" ml-48  text-center p-4  h-screen">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1 class="mb-6 px-8 text-3xl">Ajouter un produit en sortie</h1>
+    <form class="mt-6 px-8 space-y-4 text-start" method="post" action=".">
+        {% csrf_token %}
+        <div>
+            <label for="id_name">Nom :</label><br>
+            <input id="id_name" name="name" type="text" class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+        <div>
+            <label for="id_description">Description :</label><br>
+            <textarea id="id_description" name="name" type="text" class="w-full py-4 px-6 bg-slate-500 text-white"></textarea>
+        </div>
+
+        <div>
+            <label for="type">Type de produit :</label><br>
+            <select id="type" name="type" class="w-full py-4 px-6 bg-slate-500 text-white">
+                <option value="Cahier de charges">Partagée</option>
+                <option value="Document de conception'">Exclusif</option>
+                <option value="Code source">Exclusif</option>
+                <option value="Code exécutable">Exclusif</option>
+                <option value="Rapport de test ">Exclusif</option>
+                <option value="Manuel">Exclusif</option>
+            </select>
+        </div>
+        <div>
+            <label>Date Creation</label><br>
+            <input name="creation_date" type="date" class="w-full py-4 px-6 bg-slate-500 text-white">
+        </div>
+
+        <div>
+            <button type="submit" class="py-4 px-8 bg-green-600 hover:bg-green-400 text-white hover:text-gray-800">Créer</button>
+        </div>
+    </form>
+{% endblock %}
